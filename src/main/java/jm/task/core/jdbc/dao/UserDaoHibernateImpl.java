@@ -104,8 +104,6 @@ public class UserDaoHibernateImpl implements UserDao {
             String sql = "DELETE FROM users";
             transaction = session.beginTransaction();
             session.createNativeQuery(sql).executeUpdate();
-//            List<User> result = getAllUsers();
-//            result.forEach(session::delete);
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
