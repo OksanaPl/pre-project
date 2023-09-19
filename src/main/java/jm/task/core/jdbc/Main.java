@@ -7,15 +7,17 @@ public class Main {
     public static void main(String[] args) {
         // реализуйте алгоритм здесь
         UserService userService = new UserServiceImpl();
-//        userService.dropUsersTable();
-//        userService.createUsersTable();
+
+        userService.createUsersTable();
 
         userService.saveUser("Fil", "Pl", (byte) 40);
-//        userService.saveUser("Ksu", "Pl", (byte) 40);
+        userService.saveUser("Ksu", "Pl", (byte) 40);
+        userService.saveUser("Bob", "Ivanov", (byte) 30);
+        userService.saveUser("Jack", "Petrov", (byte) 20);
 
-//        userService.removeUserById(6L);
-//        userService.getAllUsers();
-//        userService.cleanUsersTable();
-//        userService.getAllUsers();
+        userService.getAllUsers();
+
+        userService.cleanUsersTable();
+        userService.dropUsersTable();
     }
 }
