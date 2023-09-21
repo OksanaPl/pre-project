@@ -12,12 +12,12 @@ import java.util.List;
 
 
 public class UserDaoHibernateImpl implements UserDao {
+    private final SessionFactory factory = Util.getSessionFactory();
 
     public UserDaoHibernateImpl() {}
 
     @Override
     public void createUsersTable() {
-        SessionFactory factory = Util.getSessionFactory();
         Transaction transaction = null;
         try (Session session = factory.getCurrentSession()) {
             String sql = "CREATE TABLE IF NOT EXISTS users " +
@@ -37,7 +37,6 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
-        SessionFactory factory = Util.getSessionFactory();
         Transaction transaction = null;
         try (Session session = factory.getCurrentSession()) {
             String sql = "DROP TABLE IF EXISTS users";
@@ -54,7 +53,6 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        SessionFactory factory = Util.getSessionFactory();
         Transaction transaction = null;
         try  (Session session = factory.getCurrentSession()){
             User user = new User(name, lastName, age);
@@ -71,7 +69,6 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void removeUserById(long id) {
-        SessionFactory factory = Util.getSessionFactory();
         Transaction transaction = null;
         try (Session session = factory.getCurrentSession()) {
             transaction = session.beginTransaction();
@@ -89,7 +86,6 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public List<User> getAllUsers() {
         List<User> result = new ArrayList<>();
-        SessionFactory factory = Util.getSessionFactory();
         Transaction transaction = null;
         try (Session session = factory.getCurrentSession()) {
             transaction = session.beginTransaction();
@@ -107,7 +103,6 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-        SessionFactory factory = Util.getSessionFactory();
         Transaction transaction = null;
         try (Session session = factory.getCurrentSession()) {
             String sql = "DELETE FROM users";
